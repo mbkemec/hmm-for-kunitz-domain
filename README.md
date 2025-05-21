@@ -31,22 +31,27 @@ Get some positive and negative data from UniProt and PDB. Then applied some mach
 
 ## 2. Usage
 1. Initial Data Preparation
+
 Inside the initial_data/ folder, you will find PDB data containing proteins with and without the Kunitz domain, as well as UniProt data used for model testing.
 To clean and format these .fasta files, run the appropriate Bash commands. The cleaned files will be saved in the clean_data/ folder.
 
 2. Removing Redundant Sequences with CD-HIT
+
 Use the cd-hit command (included in the bash_codes.sh script) to reduce redundancy and retain only representative sequences.
 Then run get_clean_cd-hit.py to further format the CD-HIT output for multiple sequence alignment.
 
 3. Multiple Sequence Alignment (MSA)
+
 Use Clustal Omega to perform MSA on the cleaned sequences. This step is also included in the bash_codes.sh script.
 Ensure Clustal Omega is installed and run the alignment command in a Linux environment.
 
 4. Building the HMM
+
 Once you have the aligned .fasta file, use the hmmbuild command from the HMMER suite to create your Hidden Markov Model.
 This model will capture the conserved features of the Kunitz domain.
 
 5. Model Testing and Evaluation
+
 * Before testing, run the final Bash command to generate a .tbl file using HMMER output (to 'kunitz_notkunitz_test.fasta' this file).
 * Extract protein IDs for Kunitz and non-Kunitz sequences.
 * Use parse_tbl_file.py to convert the .tbl results into a structured .csv file.
